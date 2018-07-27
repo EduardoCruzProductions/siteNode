@@ -15,22 +15,22 @@
         <div class="col-md-3">
 
           <h2>Formulário de Cadastro</h2><br/>
-          <form>
+          <form action="/cadastroclientes/add" method="post">
 
             <div class="form-group">
               <label for="inputNome">Nome</label>
-              <input type="text" class="form-control" id="inputNome" placeholder="Informe seu nome">
+              <input type="text" class="form-control" id="inputNome" placeholder="Informe seu nome" name="nome">
             </div>
 
             <div class="form-group">
               <label for="InputEmail">Email</label>
-              <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Informe seu email">
+              <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Informe seu email" name="email">
               <small id="emailHelp" class="form-text text-muted">* Seu email não será compartilhado com ninguém.</small>
             </div>
 
             <div class="form-group">
               <label for="inputCpf">CPF</label>
-              <input type="text" class="form-control" id="inputCpf" placeholder="Informe seu CPF">
+              <input type="text" class="form-control" id="inputCpf" placeholder="Informe seu CPF" name="cpf">
             </div>
 
             <button type="submit" class="btn btn-primary">Enviar</button>
