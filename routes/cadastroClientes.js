@@ -1,19 +1,49 @@
 var express = require('express');
 var router = express.Router();
-var clienteDao = require('../banco/ClienteDao');
+var model = require('./../modelo/cliente')();
 
 router.get('/', function(req, res, next) {
-  res.render('cadastrocliente');
-  clienteDao.listarTodos()
+
+  model.find(null, function(err, clientes){
+    if(err) throw err;
+    res.render('cadastrocliente', {title: 'CadastroCliente', clientes: clientes});
+  });
+
 });
 
 router.post('/add', function(req, res, next) {
   var body = req.body;
-  console.log("Salvando forumlário...");
+  console.log("Salvando formulário...");
   console.log(body);
-  clienteDao.salvar(body);
 
-  res.redirect('/cadastroclientes');
+  model.create(body, function (err, cliente){
+    if(err) throw err;
+    res.redirect('/cadastroclientes');
+  })
+
+});
+
+router.get('/remove/:id', function(req, res, next){
+
+  var id = req.params.id;
+  console.log(id);
+
+  model.findById(id, function(err, cliente){
+    if(err){
+      throw err;
+    }else{
+
+      model.deleteOne(cliente, function(err){
+        if(err) throw err;
+
+      });
+
+    }
+
+    res.redirect('/cadastroclientes');
+
+  });
+
 });
 
 module.exports = router;

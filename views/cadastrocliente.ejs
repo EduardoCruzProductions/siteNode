@@ -35,6 +35,7 @@
 
             <button type="submit" class="btn btn-primary">Enviar</button>
 
+
           </form>
 
           <br/>
@@ -56,14 +57,18 @@
             </thead>
 
             <tbody>
+
+              <% for(var i=0; i < clientes.length; i++) { %>
               <tr>
-                <td>Jacob</td>
-                <td>Jacob@Jacob.Jacob</td>
-                <td>123.123.123-32</td>
+                <td><%= clientes[i].nome %></td>
+                <td><%= clientes[i].email %></td>
+                <td><%= clientes[i].cpf %></td>
                 <td>
-                    <button type="button" class="btn btn-danger">Excluir</button>
+                    <a class="btn btn-danger" href="/cadastroclientes/remove/<%=clientes[i]._id%>">Excluir</a>
                 </td>
               </tr>
+
+              <% } %>
 
             </tbody>
 
