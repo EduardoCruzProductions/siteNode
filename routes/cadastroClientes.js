@@ -4,6 +4,7 @@ var clienteDao = require('../banco/ClienteDao');
 
 router.get('/', function(req, res, next) {
   res.render('cadastrocliente');
+  clienteDao.listarTodos()
 });
 
 router.post('/add', function(req, res, next) {
