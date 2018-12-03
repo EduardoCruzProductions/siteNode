@@ -17,24 +17,25 @@
           <h2>Formulário de Cadastro</h2><br/>
           <form action="/cadastroclientes/add" method="post">
 
+            <input type="hidden" id="inputId" name="_id" value="<%=cliente._id%>">
+
             <div class="form-group">
               <label for="inputNome">Nome</label>
-              <input type="text" class="form-control" id="inputNome" placeholder="Informe seu nome" name="nome">
+              <input type="text" class="form-control" id="inputNome" placeholder="Informe seu nome" name="nome" value="<%=cliente.nome%>">
             </div>
 
             <div class="form-group">
               <label for="InputEmail">Email</label>
-              <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Informe seu email" name="email">
+              <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Informe seu email" value="<%=cliente.email%>" name="email">
               <small id="emailHelp" class="form-text text-muted">* Seu email não será compartilhado com ninguém.</small>
             </div>
 
             <div class="form-group">
               <label for="inputCpf">CPF</label>
-              <input type="text" class="form-control" id="inputCpf" placeholder="Informe seu CPF" name="cpf">
+              <input type="text" class="form-control" id="inputCpf" placeholder="Informe seu CPF" name="cpf" value="<%=cliente.cpf%>">
             </div>
 
-            <button type="submit" class="btn btn-primary">Enviar</button>
-
+            <button type="submit" class="btn btn-outline-primary">Salvar</button>
 
           </form>
 
@@ -64,10 +65,12 @@
                 <td><%= clientes[i].email %></td>
                 <td><%= clientes[i].cpf %></td>
                 <td>
-                    <a class="btn btn-danger" href="/cadastroclientes/remove/<%=clientes[i]._id%>">Excluir</a>
+                    <div class="btn-group mr-2" role="group">
+                      <a class="btn btn-danger" href="/cadastroclientes/remove/<%=clientes[i]._id%>">Excluir</a>
+                      <a class="btn btn-secondary" href="/cadastroclientes/alterar/<%=clientes[i]._id%>">Alterar</a>
+                    </div>
                 </td>
               </tr>
-
               <% } %>
 
             </tbody>
