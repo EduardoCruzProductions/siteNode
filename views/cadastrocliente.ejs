@@ -8,10 +8,32 @@
     <script src="/javascripts/bootstrap.js"></script>
     <script src="/javascripts/jquery.js"></script>
     <script src="/javascripts/jquery.mask.min.js"></script>
+    <script src="/javascripts/validadorCPF.js"></script>
 
     <script>
+
       $(document).ready(function(){
+
         $('#inputCpf').mask('000.000.000-00');
+
+        $('#formCadastroCliente').submit(function(){
+
+          var nome = $('#inputNome').val();
+          var email = $('#inputEmail').val();
+          var cpf = $('#inputCpf').val();
+
+          if(nome == '' || email == '' || cpf == ''){
+            alert("Preencha todos os campos!");
+            return false;
+          }else{
+            if(!ValidarCPF(cpf)){
+              alert("CPF inválido!");
+              return false;
+            }
+          }
+
+        });
+
       });
     </script>
 
@@ -23,7 +45,7 @@
         <div class="col-md-3">
 
           <h2>Formulário de Cadastro</h2><br/>
-          <form action="/cadastroclientes/add" method="post">
+          <form id="formCadastroCliente" action="/cadastroclientes/add" method="post">
 
             <input type="hidden" id="inputId" name="_id" value="<%=cliente._id%>">
 
@@ -34,7 +56,7 @@
 
             <div class="form-group">
               <label for="InputEmail">Email</label>
-              <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Informe seu email" value="<%=cliente.email%>" name="email">
+              <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Informe seu email" value="<%=cliente.email%>" name="email">
               <small id="emailHelp" class="form-text text-muted">* Seu email não será compartilhado com ninguém.</small>
             </div>
 
@@ -43,7 +65,7 @@
               <input type="text" class="form-control" id="inputCpf" placeholder="Preencha seu CPF" name="cpf" value="<%=cliente.cpf%>">
             </div>
 
-            <button type="submit" class="btn btn-outline-primary">Salvar</button>
+            <button id="btnSalvar" type="submit" class="btn btn-outline-primary">Salvar</button>
 
           </form>
 
